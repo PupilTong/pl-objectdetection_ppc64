@@ -5,7 +5,7 @@ ENV APPROOT="/usr/src/objdect"
 WORKDIR $APPROOT
 USER root
 COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
-RUN cd $APPROOT && wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar && tar -xf VOCtest_06-Nov-2007.tar
+RUN cd $APPROOT && tar -xf VOCtest_06-Nov-2007.tar
 
 
 RUN apt update && apt install -y --no-install-recommends python3-dev python3-opencv build-essential python3-pip python3-setuptools zlib1g-dev libjpeg-dev libsm6 libxext6 libxrender-dev python3-tk
