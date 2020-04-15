@@ -1,4 +1,4 @@
-FROM docker.io/ibmcom/powerai:1.7.0-all-ubuntu18.04-py37
+FROM docker.io/ibmcom/powerai:1.7.0-tensorflow-ubuntu18.04-py37
 ENV LICENSE=yes
 LABEL maintainer "haoyangw@bu.edu"
 ENV APPROOT="/usr/src/objdect"
