@@ -8,7 +8,8 @@ COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
 COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 RUN export PATH=/usr/include/linux/:$PATH
 
-RUN apt update && apt install -y --no-install-recommends python3-dev python3-opencv build-essential python3-pip python3-setuptools zlib1g-dev libjpeg-dev libsm6 libxext6 libxrender-dev python3-tk
+RUN apt update && apt install -y --no-install-recommends python3-dev python3-opencv
+#build-essential python3-pip python3-setuptools zlib1g-dev libjpeg-dev libsm6 libxext6 libxrender-dev python3-tk
 USER pwrai
 RUN export PATH=/usr/include/linux/:$PATH
 #RUN pip3 install tensorflow-gpu==1.14
