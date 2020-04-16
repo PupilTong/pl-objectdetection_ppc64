@@ -17,7 +17,7 @@ COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
 COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 CMD ["/bin/bash"]
 USER pwrai
-SHELL ["$CONDA_INSTALL_DIR/bin/conda", "run", "$CONDA_ENV", "/bin/bash", "-c"]
+SHELL ["${CONDA_INSTALL_DIR}/bin/conda", "run", "${CONDA_ENV}", "/bin/bash", "-c"]
 RUN pip install pycuda
 #RUN $CONDA_INSTALL_DIR/bin/activate $CONDA_ENV
 
