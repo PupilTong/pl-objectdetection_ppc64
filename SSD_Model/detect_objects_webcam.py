@@ -164,7 +164,7 @@ def main():
         # Define the video stream
         #cap = cv2.VideoCapture(0)
         #cap = cv2.VideoCapture('animal.webm')  # Change only if you have more than one webcams
-        cap = cv2.VideoCapture('animal360p.webm')  # Change only if you have more than one webcams
+        cap = cv2.VideoCapture(str(os.environ['APPROOT']) + '/SSD_Model/animal360p.webm')  # Change only if you have more than one webcams
         if (cap.isOpened()== False): 
             print("Error opening video stream or file")
             exit()
