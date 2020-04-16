@@ -19,7 +19,7 @@ RUN chown -R pwrai $APPROOT
 
 USER pwrai
 #SHELL ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c"]
-ENV PATH /opt/anaconda/envs/wmlce/bin:$PATH
+ENV PATH /opt/anaconda/bin:/opt/anaconda/envs/wmlce/bin:$PATH
 RUN source activate wmlce && pip install pycuda
 WORKDIR $APPROOT/SSD_Model
 #ENTRYPOINT ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c"]
