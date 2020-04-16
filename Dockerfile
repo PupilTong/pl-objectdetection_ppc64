@@ -20,7 +20,7 @@ RUN pip install pycuda
 COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
 COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 USER root
-RUN chown -R pwrai $approot
+RUN chown -R pwrai $APPROOT
 USER pwrai
 #RUN $CONDA_INSTALL_DIR/bin/activate $CONDA_ENV
 
