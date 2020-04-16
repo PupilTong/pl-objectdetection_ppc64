@@ -17,8 +17,8 @@ CMD ["/bin/bash"]
 USER pwrai
 SHELL ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c"]
 RUN pip install pycuda
-COPY ["SSD_Model", "${APPROOT}/SSD_Model","--chown=pwrai"]
-COPY ["VOCdevkit", "${APPROOT}/VOCdevkit","--chown=pwrai"]
+COPY ["--chown=pwrai","SSD_Model", "${APPROOT}/SSD_Model"]
+COPY ["--chown=pwrai","VOCdevkit", "${APPROOT}/VOCdevkit"]
 #RUN $CONDA_INSTALL_DIR/bin/activate $CONDA_ENV
 
 #RUN export PATH=/usr/include/linux/:$PATH && \
