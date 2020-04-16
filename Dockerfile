@@ -17,7 +17,7 @@ COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
 COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 CMD ["/bin/bash"]
 USER pwrai
-SHELL ["conda","run","-n", "$CONDA_ENV", "/bin/bash", "-c","pip install pycuda"]
+RUN conda activate $CONDA_ENV
 
 #RUN export PATH=/usr/include/linux/:$PATH && \
 #    export C_INCLUDE_PATH=/usr/include/linux/:$C_INCLUDE_PATH && \
