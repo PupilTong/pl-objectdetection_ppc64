@@ -16,8 +16,8 @@ RUN apt update && apt install -y --no-install-recommends python3-dev python3-ope
 COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
 COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 CMD ["/bin/bash"]
-USER pwrai
-RUN conda activate $CONDA_ENV
+USER pwra
+RUN $CONDA_INSTALL_DIR/bin/activate $CONDA_ENV
 
 #RUN export PATH=/usr/include/linux/:$PATH && \
 #    export C_INCLUDE_PATH=/usr/include/linux/:$C_INCLUDE_PATH && \
