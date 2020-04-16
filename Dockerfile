@@ -4,8 +4,6 @@ LABEL maintainer "haoyangw@bu.edu"
 ENV APPROOT="/usr/src/objdect"
 WORKDIR $APPROOT
 USER root
-COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
-COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 #RUN export PATH=/usr/include/linux/:$PATH && \
 #    export C_INCLUDE_PATH=/usr/include/linux/:$C_INCLUDE_PATH && \
 #    export LIBRARY_PATH=/usr/include/linux/:$LIBRARY_PATH &&\
@@ -14,6 +12,9 @@ COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 
 RUN apt update && apt install -y --no-install-recommends python3-dev python3-opencv build-essential libboost-all-dev python-numpy python-setuptools libboost-python-dev libboost-thread-dev nvidia-cuda-dev
 #build-essential python3-pip python3-setuptools zlib1g-dev libjpeg-dev libsm6 libxext6 libxrender-dev python3-tk
+
+COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
+COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 USER pwrai
 RUN pip install pycuda
 
