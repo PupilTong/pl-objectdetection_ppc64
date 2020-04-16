@@ -15,6 +15,7 @@ RUN apt update && apt install -y --no-install-recommends python3-dev python3-ope
 
 COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
 COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
+CMD ["/bin/bash"]
 USER pwrai
 RUN /bin/bash && pip install pycuda
 
