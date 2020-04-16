@@ -17,10 +17,10 @@ COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
 COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 RUN chown -R pwrai $APPROOT
 
-CMD ["/bin/bash"]
 USER pwrai
 #SHELL ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c"]
-RUN /bin/bash -c "conda activate wmlce && pip install pycuda"
+RUN /opt/anaconda/bin/conda init bash && \
+    /bin/bash -c "/opt/anaconda/bin/conda activate wmlce && pip install pycuda"
 #RUN pip install pycuda
 WORKDIR $APPROOT/SSD_Model
 #ENTRYPOINT ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c"]
