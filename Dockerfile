@@ -21,6 +21,8 @@ CMD ["/bin/bash"]
 USER pwrai
 SHELL ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c"]
 RUN pip install pycuda
+WORKDIR $APPROOT/SSD_Model
+ENTRYPOINT ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c","python3"]
 #RUN $CONDA_INSTALL_DIR/bin/activate $CONDA_ENV
 
 #RUN export PATH=/usr/include/linux/:$PATH && \
