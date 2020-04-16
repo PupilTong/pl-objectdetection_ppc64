@@ -15,14 +15,15 @@ RUN apt install -y --no-install-recommends ffmpeg
 #build-essential python3-pip python3-setuptools zlib1g-dev libjpeg-dev libsm6 libxext6 libxrender-dev python3-tk
 COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
 COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
+COPY ["entrypoint.sh", "/usr/local/bin"]
+RUN chmod 777 /usr/local/bin/entrypoint.sh
 RUN chown -R pwrai $APPROOT
 
 USER pwrai
-ENV PATH=/opt/anaconda/envs/wmlce/bin:$APPROOT:$PATH
+ENV PATH=/opt/anaconda/envs/wmlce/bin:$PATH
 RUN /bin/bash -c "pip install pycuda"
 
 WORKDIR $APPROOT/SSD_Model
-COPY ["entrypoint.sh", "${APPROOT}"]
 ENTRYPOINT ["entrypoint.sh"]
 #SHELL ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c"]
 #RUN source activate wmlce && pip install pycuda
