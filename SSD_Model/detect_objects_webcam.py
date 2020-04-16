@@ -200,11 +200,11 @@ def main():
             # Display output
             ## cv2.imshow('object detection', final_img)
 
-            if cv2.waitKey(25) & 0xFF == ord('q'):
-                cap.release()
-                out.release()
-                cv2.destroyAllWindows()
-                break
+            #if cv2.waitKey(25) & 0xFF == ord('q'):
+            #    cap.release()
+            #    out.release()
+            #    cv2.destroyAllWindows()
+            #    break
 
 if __name__ == '__main__':
     main()
