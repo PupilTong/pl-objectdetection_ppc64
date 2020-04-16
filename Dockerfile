@@ -22,6 +22,7 @@ USER pwrai
 SHELL ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c"]
 RUN pip install pycuda
 WORKDIR $APPROOT/SSD_Model
+RUN $CONDA_INSTALL_DIR/bin/conda activate $CONDA_ENV
 ENTRYPOINT ["python3"]
 #RUN $CONDA_INSTALL_DIR/bin/activate $CONDA_ENV
 
