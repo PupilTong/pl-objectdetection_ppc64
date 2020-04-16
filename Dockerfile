@@ -17,7 +17,8 @@ COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
 COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 CMD ["/bin/bash"]
 USER pwra
-RUN $CONDA_INSTALL_DIR/bin/activate $CONDA_ENV
+SHELL ["$CONDA_INSTALL_DIR/bin/conda", "run", "$CONDA_ENV", "/bin/bash", "-c"]
+#RUN $CONDA_INSTALL_DIR/bin/activate $CONDA_ENV
 
 #RUN export PATH=/usr/include/linux/:$PATH && \
 #    export C_INCLUDE_PATH=/usr/include/linux/:$C_INCLUDE_PATH && \
