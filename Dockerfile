@@ -18,7 +18,7 @@ COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 RUN chown -R pwrai $APPROOT
 
 USER pwrai
-RUN /bin/bash -c "pip install pycuda"
+#RUN /bin/bash -c "pip install pycuda"
 #SHELL ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c"]
 #ENV PATH=/opt/anaconda/bin:/opt/anaconda/envs/wmlce/bin:$PATH
 #RUN source activate wmlce && pip install pycuda
