@@ -18,6 +18,7 @@ COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 CMD ["/bin/bash"]
 USER pwra
 SHELL ["$CONDA_INSTALL_DIR/bin/conda", "run", "$CONDA_ENV", "/bin/bash", "-c"]
+RUN pip install pycuda
 #RUN $CONDA_INSTALL_DIR/bin/activate $CONDA_ENV
 
 #RUN export PATH=/usr/include/linux/:$PATH && \
