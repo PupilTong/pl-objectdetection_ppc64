@@ -123,9 +123,9 @@ class Paths(object):
         if should_verify_voc:
             print("checking:" + (self._verify_voc_paths()))
             error = self._verify_voc_paths()
-        if not os.path.exists(self.get_workspace_dir_path()):
-            print("checking:" + (self.get_workspace_dir_path()))
-            error = True
+        #if not os.path.exists(self.get_workspace_dir_path()):
+        #    print("checking:" + (self.get_workspace_dir_path()))
+        #    error = True
 
         if error:
             print("An error occured when running the script.")
