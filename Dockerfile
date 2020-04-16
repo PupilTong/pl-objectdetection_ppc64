@@ -18,12 +18,12 @@ COPY ["VOCdevkit", "${APPROOT}/VOCdevkit"]
 RUN chown -R pwrai $APPROOT
 
 USER pwrai
-ENV PATH=/opt/anaconda/envs/wmlce/bin:$PATH
+ENV PATH=/opt/anaconda/envs/wmlce/bin:$APPROOT:$PATH
 RUN /bin/bash -c "pip install pycuda"
 
 WORKDIR $APPROOT/SSD_Model
 COPY ["entrypoint.sh", "${APPROOT}"]
-ENTRYPOINT ["../entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 #SHELL ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c"]
 #RUN source activate wmlce && pip install pycuda
 #ENTRYPOINT ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c"]
