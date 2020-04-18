@@ -16,11 +16,11 @@ pl-objectdetection
 Abstract
 --------
 
-This is the original runnable object dection python3 scripts and its running environment container on ppc64le, check the chrisapp version, click here:
+This is the original runnable object dection python3 scripts and its running environment container on ppc64le. To get the chrisapp version, click here:
 
 https://github.com/FNNDSC/pl-objectdetection_moc_ppc64
 
-check the parent scripts & x86 container powered by nvidia, check here
+check the parent scripts & x86 container powered by nvidia:
 
 https://github.com/NVIDIA/object-detection-tensorrt-example
 
@@ -33,7 +33,7 @@ For amd64 version check here:
 Origin scripts & container:
 https://github.com/FNNDSC/object-detection-tensorrt-example
 
-Chris app:
+amd64 version Chris app:
 
 https://github.com/FNNDSC/pl-object-detection
 
