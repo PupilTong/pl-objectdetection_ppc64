@@ -16,7 +16,7 @@ RUN apt install -y --no-install-recommends ffmpeg
 
 USER pwrai
 ENV PATH=/opt/anaconda/envs/wmlce/bin:$PATH
-RUN /bin/bash -c "pip install pycuda"
+RUN /bin/bash -c "pip install pycuda chrisapp"
 
 USER root
 COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
@@ -26,7 +26,7 @@ RUN chmod 777 /usr/local/bin/entrypoint.sh
 RUN chown -R pwrai $APPROOT
 
 USER pwrai
-RUN /bin/bash -c "pip install -r requirements.txt"
+#RUN /bin/bash -c "pip install -r requirements.txt"
 WORKDIR $APPROOT/SSD_Model
 ENTRYPOINT ["entrypoint.sh"]
 #SHELL ["/opt/anaconda/bin/conda", "run","-n", "wmlce", "/bin/bash", "-c"]
