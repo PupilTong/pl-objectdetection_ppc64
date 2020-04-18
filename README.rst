@@ -60,27 +60,6 @@ Run
 
 This ``plugin`` can be run in two modes: natively as a python package or as a containerized docker image.
 
-Using PyPI
-~~~~~~~~~~
-
-To run from PyPI, simply do a 
-
-.. code:: bash
-
-    pip install objectdetection
-
-and run with
-
-.. code:: bash
-
-    objectdetection.py --man /tmp /tmp
-
-to get inline help. The app should also understand being called with only two positional arguments
-
-.. code:: bash
-
-    objectdetection.py /some/input/directory /destination/directory
-
 
 Using ``docker run``
 ~~~~~~~~~~~~~~~~~~~~
