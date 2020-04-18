@@ -28,6 +28,15 @@ Docker container published on dockerhub:
 
 https://hub.docker.com/repository/docker/fnndsc/pl-objectdetection_moc_ppc64
 
+For amd64 version check here:
+
+Origin scripts & container:
+https://github.com/FNNDSC/object-detection-tensorrt-example
+
+Chris app:
+
+https://github.com/FNNDSC/pl-object-detection
+
 Contributer
 --------
 @PupilTong modified the original object detection for benchmarking usage & built runnable ppc64le running environment.
