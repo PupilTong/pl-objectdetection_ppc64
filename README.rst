@@ -24,6 +24,10 @@ check the parent scripts & x86 container powered by nvidia, check here
 
 https://github.com/NVIDIA/object-detection-tensorrt-example
 
+Docker container published on dockerhub:
+
+https://hub.docker.com/repository/docker/fnndsc/pl-objectdetection_moc_ppc64
+
 Contributer
 --------
 @PupilTong modified the original object detection for benchmarking usage & built runnable ppc64le running environment.
