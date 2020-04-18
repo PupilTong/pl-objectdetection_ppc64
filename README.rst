@@ -58,7 +58,6 @@ Agruments
 Run
 ----
 
-This ``plugin`` can be run in two modes: natively as a python package or as a containerized docker image.
 
 
 Using ``docker run``
