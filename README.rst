@@ -75,18 +75,22 @@ Now, prefix all calls with
 
 .. code:: bash
 
-    docker run --rm -v $(pwd)/out:/outgoing                             \
-            fnndsc/pl-objectdetection objectdetection.py                        \
+    docker run --security-opt label=type:nvidia_container_t
+                -v $(pwd)/in:/incoming:z -v $(pwd)/out:/outgoing:z
+                docker.io/fnndsc/pl-objectdetection_moc_ppc64
+                objectdetection.py
+                /incoming /outgoing
 
 Thus, getting inline help is:
 
 .. code:: bash
 
     mkdir in out && chmod 777 out
-    docker run --rm -v $(pwd)/in:/incoming -v $(pwd)/out:/outgoing      \
-            fnndsc/pl-objectdetection objectdetection.py                        \
-            --man                                                       \
-            /incoming /outgoing
+    docker run --security-opt label=type:nvidia_container_t
+                -v $(pwd)/in:/incoming:z -v $(pwd)/out:/outgoing:z
+                docker.io/fnndsc/pl-objectdetection_moc_ppc64
+                objectdetection.py
+                /incoming /outgoing
 
 
 
