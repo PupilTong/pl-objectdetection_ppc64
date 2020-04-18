@@ -82,9 +82,6 @@ Thus, getting inline help is:
             --man                                                       \
             /incoming /outgoing
 
-Examples
---------
-
 
 
 
