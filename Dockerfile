@@ -16,7 +16,7 @@ RUN apt install -y --no-install-recommends ffmpeg
 
 USER pwrai
 ENV PATH=/opt/anaconda/envs/wmlce/bin:$PATH
-RUN /bin/bash -c "pip install pycuda"
+RUN /bin/bash -c "pip install pycuda chrisapp"
 
 USER root
 COPY ["SSD_Model", "${APPROOT}/SSD_Model"]
