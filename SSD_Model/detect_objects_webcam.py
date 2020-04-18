@@ -3,6 +3,7 @@ import ctypes
 import time
 import sys
 import argparse
+import csv
 
 import cv2
 import numpy as np
@@ -138,7 +139,7 @@ def parse_commandline_arguments():
 
     return args
 
-def main():
+def main(max_time, min_time, sum_time, num):
 
     # Parse command line arguments
     args = parse_commandline_arguments()
@@ -165,7 +166,7 @@ def main():
         #cap = cv2.VideoCapture(0)
         #cap = cv2.VideoCapture('animal.webm')  # Change only if you have more than one webcams
         cap = cv2.VideoCapture(str(os.environ['APPROOT']) + '/SSD_Model/animal360p.webm')  # Change only if you have more than one webcams
-        if (cap.isOpened()== False): 
+        if (cap.isOpened()== False):
             print("Error opening video stream or file")
             exit()
         else:
@@ -175,7 +176,7 @@ def main():
         frame_width = int(cap.get(3))
         frame_height = int(cap.get(4))
         fps = cap.get(cv2.CAP_PROP_FPS)
-        
+
 	    # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
         out = cv2.VideoWriter('animal360pOutput.mp4',cv2.VideoWriter_fourcc(*'XVID'), fps, (frame_width,frame_height))
 
@@ -187,7 +188,12 @@ def main():
                 print("Video played.")
                 break
             # Actually run inference
-            detection_out, keep_count_out = trt_inference_wrapper.infer_webcam(image_np)
+            cur, detection_out, keep_count_out = trt_inference_wrapper.infer_webcam(image_np)
+            max_time = max(max_time, cur)
+            min_time = min(min_time, cur)
+            sum_time += cur
+            num += 1
+
             # Overlay the bounding boxes on the image
             # let analyze_prediction() draw them based on model output
             img_pil = Image.fromarray(image_np)
@@ -197,6 +203,7 @@ def main():
             final_img = np.asarray(img_pil)
 
             out.write(final_img)
+        return max_time, min_time, sum_time, num
             # Display output
             ## cv2.imshow('object detection', final_img)
 
@@ -205,6 +212,43 @@ def main():
             #    out.release()
             #    cv2.destroyAllWindows()
             #    break
+def createOrUpdate(outdir, data):
+    headers = ["maximum_fps", "minimum_fps", "average_fps"]
+    filepath = outdir  + '/FramePerSecondRecord.csv'
+    # filepath = str(os.environ['APPROOT']) + '/FramePerSecondRecord.csv'
+    print(filepath)
+    if (os.path.exists(filepath)):
+        # if the file exist add the value of the dictionary,else will build a new file with the header
+        with open(filepath, 'a+') as f:
 
+            f_csv = csv.DictWriter(f, headers)
+            for item in data:
+                f_csv.writerow(item)
+    else:
+        # %s/timestamp.json' % options.outputdir,
+        with open(filepath, 'a+') as f:
+            f_csv = csv.DictWriter(f, headers)
+            # write headers to database.csv
+            f_csv.writeheader()
+            # write values of input Python Dictionary to database.csv row by row
+            for item in data:
+                f_csv.writerow(item)
 if __name__ == '__main__':
-    main()
+    #outputdir = "/root/ec528-Chris-group/kefan/k3/pl-object-detection_moc_ppc64/SSD_Model"
+    outputdir = sys.argv[1]
+    maxt = 0
+    mint = 10000
+    sumt = 0
+    numf = 0
+    maxt, mint, sumt, numf = main(maxt, mint, sumt, numf)
+    maxt /= 1000
+    mint /= 1000
+    sumt /= 1000
+    max_fps = round(1 / mint, 2)
+    min_fps = round(1 / maxt, 2)
+    avg_fps = round(numf / sumt, 2)
+    print("maximum_fps: " + str(max_fps) + "\n" + "minimum_fps: " + str(min_fps) + "\n" + "average_fps: " + str(avg_fps))
+    data = [{'maximum_fps': max_fps, 'minimum_fps': min_fps, 'average_fps': avg_fps}]
+    createOrUpdate(outputdir, data)
+
+

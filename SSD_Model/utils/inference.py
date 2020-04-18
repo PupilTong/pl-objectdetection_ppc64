@@ -155,13 +155,13 @@ class TRTInference(object):
         [detection_out, keepCount_out] = common.do_inference(
             self.context, bindings=self.bindings, inputs=self.inputs,
             outputs=self.outputs, stream=self.stream)
-
+        cur_time = int(round((time.time() - inference_start_time) * 1000))
         # Output inference time
         print("TensorRT inference time: {} ms".format(
-            int(round((time.time() - inference_start_time) * 1000))))
+            cur_time))
 
         # And return results
-        return detection_out, keepCount_out
+        return cur_time, detection_out, keepCount_out
 
     def infer_webcam(self, arr):
         """Infers model on given image.
@@ -186,12 +186,14 @@ class TRTInference(object):
             self.context, bindings=self.bindings, inputs=self.inputs,
             outputs=self.outputs, stream=self.stream)
 
-        # Output inference time
+        infer_time = int(round((time.time() - inference_start_time) * 1000))
         print("TensorRT inference time: {} ms".format(
-            int(round((time.time() - inference_start_time) * 1000))))
-
+            infer_time
+        ))
         # And return results
-        return detection_out, keepCount_out
+        return infer_time, detection_out, keepCount_out
+        # Output inference time
+
 
     def infer_batch(self, image_paths):
         """Infers model on batch of same sized images resized to fit the model.
