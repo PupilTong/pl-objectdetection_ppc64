@@ -18,6 +18,12 @@ Abstract
 
 An app to ...
 
+Contributer
+--------
+@PupilTong
+@h4x0rMadness
+
+An app to ...
 
 Synopsis
 --------
