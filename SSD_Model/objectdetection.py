@@ -54,6 +54,7 @@ where necessary.)
             [--savejson <DIR>]                                          \\
             [-v <level>] [--verbosity <level>]                          \\
             [--version]                                                 \\
+            [--file]                                                    \\
             <inputDir>                                                  \\
             <outputDir> 
 
@@ -138,10 +139,15 @@ class Objectdetection(ChrisApp):
         Define the CLI arguments accepted by this plugin app.
         Use self.add_argument to specify a new app argument.
         """
+        self.add_argument('-f','--file',
+                          dest      =   'filename',
+                          type      =   str,
+                          optional  =   False,
+                          help      =   'input a file name')
 
     def run(self, options):
         print(Gstr_title)
-        cmd_str = "python detect_objects_webcam.py " + options.inputdir + " " + options.outputdir
+        cmd_str = "python detect_objects_webcam.py " + options.inputdir + "/" + options.filename + " " + options.outputdir
         os.system(cmd_str)
 
 
