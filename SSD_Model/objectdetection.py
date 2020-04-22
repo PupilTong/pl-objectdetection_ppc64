@@ -54,7 +54,7 @@ where necessary.)
             [--savejson <DIR>]                                          \\
             [-v <level>] [--verbosity <level>]                          \\
             [--version]                                                 \\
-            [--file]                                                    \\
+            [--file <filename>]                                         \\
             <inputDir>                                                  \\
             <outputDir> 
 
@@ -118,8 +118,8 @@ class Objectdetection(ChrisApp):
     MIN_CPU_LIMIT           = '' # Override with millicore value as string, e.g. '2000m'
     MAX_MEMORY_LIMIT        = '' # Override with string, e.g. '1Gi', '2000Mi'
     MIN_MEMORY_LIMIT        = '' # Override with string, e.g. '1Gi', '2000Mi'
-    MIN_GPU_LIMIT           = 0  # Override with the minimum number of GPUs, as an integer, for your plugin
-    MAX_GPU_LIMIT           = 0  # Override with the maximum number of GPUs, as an integer, for your plugin
+    MIN_GPU_LIMIT           = 1  # Override with the minimum number of GPUs, as an integer, for your plugin
+    MAX_GPU_LIMIT           = 1  # Override with the maximum number of GPUs, as an integer, for your plugin
 
     # Use this dictionary structure to provide key-value output descriptive information
     # that may be useful for the next downstream plugin. For example:
@@ -142,13 +142,12 @@ class Objectdetection(ChrisApp):
         self.add_argument('-f','--file',
                           dest      =   'filename',
                           type      =   str,
-                          optional  =   True,
-                          help      =   'input a file name',
-                          default   =   './animal360p.webm')
+                          optional  =   False,
+                          help      =   'input a file name')
 
     def run(self, options):
         print(Gstr_title)
-        cmd_str = "python detect_objects_webcam.py " + options.filename + " " + options.outputdir
+        cmd_str = "python detect_objects_webcam.py " + options.inputdir + "/" + options.filename + " " + options.outputdir
         os.system(cmd_str)
 
 
