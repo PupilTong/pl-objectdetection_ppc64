@@ -142,12 +142,13 @@ class Objectdetection(ChrisApp):
         self.add_argument('-f','--file',
                           dest      =   'filename',
                           type      =   str,
-                          optional  =   False,
-                          help      =   'input a file name')
+                          optional  =   True,
+                          help      =   'input a file name',
+                          default   =   './animal360p.webm')
 
     def run(self, options):
         print(Gstr_title)
-        cmd_str = "python detect_objects_webcam.py " + options.inputdir + "/" + options.filename + " " + options.outputdir
+        cmd_str = "python detect_objects_webcam.py " + options.filename + " " + options.outputdir
         os.system(cmd_str)
 
 
