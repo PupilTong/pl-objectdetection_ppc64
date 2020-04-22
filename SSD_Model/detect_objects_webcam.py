@@ -139,7 +139,7 @@ def parse_commandline_arguments():
 
     return args
 
-def main(max_time, min_time, sum_time, num):
+def main(max_time, min_time, sum_time, num, inputfile):
 
     # Parse command line arguments
     args = parse_commandline_arguments()
@@ -165,7 +165,7 @@ def main(max_time, min_time, sum_time, num):
         # Define the video stream
         #cap = cv2.VideoCapture(0)
         #cap = cv2.VideoCapture('animal.webm')  # Change only if you have more than one webcams
-        cap = cv2.VideoCapture(str(os.environ['APPROOT']) + '/SSD_Model/animal360p.webm')  # Change only if you have more than one webcams
+        cap = cv2.VideoCapture(inputfile)  
         if (cap.isOpened()== False):
             print("Error opening video stream or file")
             exit()
@@ -235,12 +235,13 @@ def createOrUpdate(outdir, data):
                 f_csv.writerow(item)
 if __name__ == '__main__':
     #outputdir = "/root/ec528-Chris-group/kefan/k3/pl-object-detection_moc_ppc64/SSD_Model"
-    outputdir = sys.argv[1]
+    outputdir = sys.argv[2]
+    inputfile = sys.argv[1]
     maxt = 0
     mint = 10000
     sumt = 0
     numf = 0
-    maxt, mint, sumt, numf = main(maxt, mint, sumt, numf)
+    maxt, mint, sumt, numf = main(maxt, mint, sumt, numf,inputfile)
     maxt /= 1000
     mint /= 1000
     sumt /= 1000
