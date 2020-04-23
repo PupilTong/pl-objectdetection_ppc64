@@ -109,6 +109,10 @@ def parse_commandline_arguments():
         help='path to the calibration dataset')
     parser.add_argument('-c', '--camera', default=True,
         help='if True, will run webcam application')
+    parser.add_argument('-op', '--outpath',
+        help='output directory path')
+    parser.add_argument('-in', '--inpath',
+        help='output directory path')
 
     # Parse arguments passed
     args = parser.parse_args()
@@ -139,11 +143,12 @@ def parse_commandline_arguments():
 
     return args
 
-def main(max_time, min_time, sum_time, num, inputfile):
+def main(max_time, min_time, sum_time, num):
 
     # Parse command line arguments
     args = parse_commandline_arguments()
-
+    outputdir_path = args.outpath
+    inputdir_path = args.inpath
     # Fetch .uff model path, convert from .pb
     # if needed, using prepare_ssd_model
     ssd_model_uff_path = PATHS.get_model_uff_path(MODEL_NAME)
@@ -156,7 +161,7 @@ def main(max_time, min_time, sum_time, num, inputfile):
         trt_engine_datatype=args.trt_engine_datatype,
         calib_dataset = args.calib_dataset,
         batch_size=args.max_batch_size)
-
+    ARGS = 3
     print("TRT ENGINE PATH", args.trt_engine_path)
 
     if args.camera == True:
@@ -165,7 +170,7 @@ def main(max_time, min_time, sum_time, num, inputfile):
         # Define the video stream
         #cap = cv2.VideoCapture(0)
         #cap = cv2.VideoCapture('animal.webm')  # Change only if you have more than one webcams
-        cap = cv2.VideoCapture(inputfile)  
+        cap = cv2.VideoCapture(inputdir_path)  # Change only if you have more than one webcams
         if (cap.isOpened()== False):
             print("Error opening video stream or file")
             exit()
@@ -203,7 +208,7 @@ def main(max_time, min_time, sum_time, num, inputfile):
             final_img = np.asarray(img_pil)
 
             out.write(final_img)
-        return max_time, min_time, sum_time, num
+        return outputdir_path, max_time, min_time, sum_time, num
             # Display output
             ## cv2.imshow('object detection', final_img)
 
@@ -216,7 +221,7 @@ def createOrUpdate(outdir, data):
     headers = ["maximum_fps", "minimum_fps", "average_fps"]
     filepath = outdir  + '/FramePerSecondRecord.csv'
     # filepath = str(os.environ['APPROOT']) + '/FramePerSecondRecord.csv'
-    print(filepath)
+    print(filepath) ## -op/FramePerSecondRecord.csv
     if (os.path.exists(filepath)):
         # if the file exist add the value of the dictionary,else will build a new file with the header
         with open(filepath, 'a+') as f:
@@ -235,13 +240,12 @@ def createOrUpdate(outdir, data):
                 f_csv.writerow(item)
 if __name__ == '__main__':
     #outputdir = "/root/ec528-Chris-group/kefan/k3/pl-object-detection_moc_ppc64/SSD_Model"
-    outputdir = sys.argv[2]
-    inputfile = sys.argv[1]
     maxt = 0
     mint = 10000
     sumt = 0
     numf = 0
-    maxt, mint, sumt, numf = main(maxt, mint, sumt, numf,inputfile)
+    outputdir, maxt, mint, sumt, numf = main(maxt, mint, sumt, numf)
+    print("outputdir: "+str(outputdir))
     maxt /= 1000
     mint /= 1000
     sumt /= 1000
@@ -251,5 +255,3 @@ if __name__ == '__main__':
     print("maximum_fps: " + str(max_fps) + "\n" + "minimum_fps: " + str(min_fps) + "\n" + "average_fps: " + str(avg_fps))
     data = [{'maximum_fps': max_fps, 'minimum_fps': min_fps, 'average_fps': avg_fps}]
     createOrUpdate(outputdir, data)
-
-
