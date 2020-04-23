@@ -147,7 +147,7 @@ class Objectdetection(ChrisApp):
 
     def run(self, options):
         print(Gstr_title)
-        cmd_str = "python detect_objects_webcam.py " + options.inputdir + "/" + options.filename + " " + options.outputdir
+        cmd_str = "python detect_objects_webcam.py -in " + options.inputdir + "/" + options.filename + " -op " + options.outputdir
         os.system(cmd_str)
 
 

@@ -183,7 +183,7 @@ def main(max_time, min_time, sum_time, num):
         fps = cap.get(cv2.CAP_PROP_FPS)
 
 	    # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
-        out = cv2.VideoWriter('animal360pOutput.mp4',cv2.VideoWriter_fourcc(*'XVID'), fps, (frame_width,frame_height))
+        out = cv2.VideoWriter(str(outputdir_path + "/output.mp4"),cv2.VideoWriter_fourcc(*'XVID'), fps, (frame_width,frame_height))
 
         # Loop for running inference on frames from the webcam
         while True:
