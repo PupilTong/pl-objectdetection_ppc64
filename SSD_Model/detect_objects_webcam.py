@@ -49,22 +49,18 @@ TRT_PREDICTION_LAYOUT = {
 
 def fetch_prediction_field(field_name, detection_out, pred_start_idx):
     """Fetches prediction field from prediction byte array.
-
     After TensorRT inference, prediction data is saved in
     byte array and returned by object detection network.
     This byte array contains several pieces of data about
     prediction - we call one such piece a prediction field.
     The prediction fields layout is described in TRT_PREDICTION_LAYOUT.
-
     This function, given prediction byte array returned by network,
     staring index of given prediction and field name of interest,
     returns prediction field data corresponding to given arguments.
-
     Args:
         field_name (str): field of interest, one of keys of TRT_PREDICTION_LAYOUT
         detection_out (array): object detection network output
         pred_start_idx (int): start index of prediction of interest in detection_out
-
     Returns:
         Prediction field corresponding to given data.
     """
