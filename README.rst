@@ -48,13 +48,17 @@ Synopsis
 
 .. code::
 
-    python objectdetection.py                                           \
-        [-v <level>] [--verbosity <level>]                          \
-        [--version]                                                 \
-        [--man]                                                     \
-        [--meta]                                                    \
-        <inputDir>
-        <outputDir> 
+        python objectdetection.py                                         \\
+            [-h] [--help]                                               \\
+            [--json]                                                    \\
+            [--man]                                                     \\
+            [--meta]                                                    \\
+            [--savejson <DIR>]                                          \\
+            [-v <level>] [--verbosity <level>]                          \\
+            [--version]                                                 \\
+            [--file <filename>]                                         \\
+            <inputDir>                                                  \\
+            <outputDir> 
 
 Description
 -----------
