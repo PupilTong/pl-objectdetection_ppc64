@@ -23,6 +23,7 @@ Your host computer should be a linux os and installed CUDA 10.1.
 For ppc64le machine:
 
 https://github.com/FNNDSC/pl-objectdetection_ppc64
+
 For x86_64 machine:
 
 https://github.com/FNNDSC/pl-objectdetection_x86
