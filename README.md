@@ -1,82 +1,29 @@
 pl-objectdetection
 ==================
 
-![image](https://badge.fury.io/py/objectdetection.svg%0A%20:target:%20https://badge.fury.io/py/objectdetection)
+Contributer
+---
+Haoyang Wang  haoyangw@bu.edu
 
-![image](https://travis-ci.org/FNNDSC/objectdetection.svg?branch=master%0A%20:target:%20https://travis-ci.org/FNNDSC/objectdetection)
+Kefan   Zhang kefan29@bu.edu
 
-![image](https://img.shields.io/badge/python-3.5%2B-blue.svg%0A%20:target:%20https://badge.fury.io/py/pl-objectdetection)
+Feel free to reach out us if you have any question. :)
 
 Abstract
 --------
+The python scripts is forked from this repo provided by Nvidia:
 
-This is the original runnable object dection python3 scripts and its
-running environment container on ppc64le. To get the **ppc64le
-chrisapp** version, click here:
+https://github.com/NVIDIA/object-detection-tensorrt-example
 
-<https://github.com/FNNDSC/pl-objectdetection_moc_ppc64>
+and it's modified to use a file as the input, run on a cloud machine and become a chris plugin.
 
-check the **parent scripts** & amd64 container powered by nvidia:
+## Deploy requirement
+Your host computer should be a linux os and installed CUDA 10.1.
 
-<https://github.com/NVIDIA/object-detection-tensorrt-example>
-
-**Docker container** published on dockerhub:
-
-<https://hub.docker.com/repository/docker/fnndsc/pl-objectdetection_moc_ppc64>
-
-For **amd64 version scripts** check here:
-
-<https://github.com/FNNDSC/object-detection-tensorrt-example>
-
-**amd64 version Chris app**:
-
-<https://github.com/FNNDSC/pl-object-detection>
-
-Contributer --------@PupilTong modified the original object detection
-for benchmarking usage & built runnable ppc64le running environment.
-@h4x0rMadness made it chris app & benchmarking outputs
-
-An app to ...
-
-Synopsis
---------
-
-``` {.sourceCode .}
-python objectdetection.py                                         \\
-    [-h] [--help]                                               \\
-    [--json]                                                    \\
-    [--man]                                                     \\
-    [--meta]                                                    \\
-    [--savejson <DIR>]                                          \\
-    [-v <level>] [--verbosity <level>]                          \\
-    [--version]                                                 \\
-    [--file <filename>]                                         \\
-    <inputDir>                                                  \\
-    <outputDir> 
-```
-
-Description
------------
-
-`objectdetection.py` is a ChRIS-based application that...
-
-Agruments
----------
-
-``` {.sourceCode .}
-[-v <level>] [--verbosity <level>]
-Verbosity level for app. Not used currently.
-
-[--version]
-If specified, print version number. 
-
-[--man]
-If specified, print (this) man page.
-
-[--meta]
-If specified, print plugin meta data.
-```
-
+For ppc64le machine:
+https://github.com/FNNDSC/pl-objectdetection_ppc64
+For x86_64 machine:
+https://github.com/FNNDSC/pl-objectdetection_x86
 Run
 ---
 
@@ -85,6 +32,7 @@ Run
 To run using `docker`, be sure to assign an "input" directory to
 `/incoming` and an output directory to `/outgoing`. *Make sure that the*
 `$(pwd)/out` *directory is world writable!*
+And use the `--f` flag to set the inputfile inside your `/incoming` directory.
 
 Now, prefix all calls with
 
@@ -95,3 +43,7 @@ docker run --security-opt label=type:nvidia_container_t    \
            objectdetection.py                               \
            -f animal360p.webm /incoming /outgoing
 ```
+
+
+How it works
+---
