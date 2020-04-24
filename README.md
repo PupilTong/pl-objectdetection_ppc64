@@ -18,7 +18,7 @@ https://github.com/NVIDIA/object-detection-tensorrt-example
 and it's modified to use a file as the input, run on a cloud machine and become a chris plugin.
 
 ## Deploy requirement
-Your host computer should be a linux os and installed CUDA 10.1.
+Your host computer should be a linux os and installed CUDA 10.1 && nvidia container.
 
 For ppc64le machine:
 
