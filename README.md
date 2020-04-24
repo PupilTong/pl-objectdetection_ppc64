@@ -43,7 +43,7 @@ Now, prefix all calls with
 ``` {.sourceCode .bash}
 docker run --security-opt label=type:nvidia_container_t    \
            -v $(pwd):/incoming:z -v $(pwd)/out:/outgoing:z \
-           docker.io/fnndsc/pl-matrixmultiply_moc_x86_64    \
+           docker.io/fnndsc/pl-matrixmultiply_moc_ppc64    \
            objectdetection.py                               \
            -f animal360p.webm /incoming /outgoing
 ```
