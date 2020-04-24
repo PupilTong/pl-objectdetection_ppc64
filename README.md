@@ -21,9 +21,12 @@ and it's modified to use a file as the input, run on a cloud machine and become 
 Your host computer should be a linux os and installed CUDA 10.1.
 
 For ppc64le machine:
+
 https://github.com/FNNDSC/pl-objectdetection_ppc64
 For x86_64 machine:
+
 https://github.com/FNNDSC/pl-objectdetection_x86
+
 Run
 ---
 
